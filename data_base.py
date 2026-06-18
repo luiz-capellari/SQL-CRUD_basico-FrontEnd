@@ -1,40 +1,29 @@
 import os
-import psycopg2
-from psycopg2 import Error
 from dotenv import load_dotenv
+from sqlalchemy import create_engine
 
 load_dotenv()
 
 def connect_db():
     
     try:
-        conn = psycopg2.connect(
+    
             dbname = os.getenv("DB_NAME"),
             user = os.getenv("DB_USER"),
             password = os.getenv("DB_PASSWORD"),
             host = os.getenv("DB_HOST"),
             port = os.getenv("DB_PORT")
-        )
-        print('Banco de dados conectado!')
-        return conn
-    except Error as e:
-        print(f'Houve uma falha ao conectar ao Banco de Dados (Postgres): {e}')
         
+            db_url = f'postgresql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}'
+    
+            engine = create_engine(db_url)
 
-connection = connect_db()
+            print('Conexão com o Banco de Dados feita com sucesso!')
 
-# PARA EU TESTAR A CONEXÃO COM O BANCO DE DADOS
-# if connection is not None:
-#     cursor = connection.cursor()
-#     cursor.execute('SELECT * FROM usarios')
-#     usuarios = cursor.fetchall()
+            return engine
 
-#     print(usuarios)
-   
-def desconect():
-    cursor = connection.cursor()
-    if cursor:
-        cursor.close()
-        connection.close()
-    return (f'("Banco de dados desconectado!")')
+    except Error as e:
+            print(f'Houve uma falha ao conectar ao Banco de Dados (Postgres): {e}')
+
+            return None
 
