@@ -8,13 +8,13 @@ def connect_db():
     
     try:
     
-            dbname = os.getenv("DB_NAME"),
-            user = os.getenv("DB_USER"),
-            password = os.getenv("DB_PASSWORD"),
-            host = os.getenv("DB_HOST"),
+            dbname = os.getenv("DB_NAME")
+            user = os.getenv("DB_USER")
+            password = os.getenv("DB_PASSWORD")
+            host = os.getenv("DB_HOST")
             port = os.getenv("DB_PORT")
         
-            db_url = f'postgresql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}'
+            db_url = f'postgresql://{user}:{password}@{host}:{port}/{dbname}'
     
             engine = create_engine(db_url)
 
@@ -22,7 +22,7 @@ def connect_db():
 
             return engine
 
-    except Error as e:
+    except OSError as e:
             print(f'Houve uma falha ao conectar ao Banco de Dados (Postgres): {e}')
 
             return None

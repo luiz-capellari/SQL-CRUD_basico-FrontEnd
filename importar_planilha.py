@@ -1,10 +1,11 @@
 from data_base import connect_db
-import panda as pd
+import pandas as pd
+import openpyxl
 
 engine = connect_db()
 
 if engine is not None:
-    pd.read_excel('equipamentos.xlsx')
+    df = pd.read_excel('equipamentos.xlsx')
 
     df.to_sql(
         name='equipamentos_estudios',
@@ -14,7 +15,7 @@ if engine is not None:
     )
     print("Planilha de equipamentos importada com sucesso!")
 
-    
+
 
 
 
