@@ -13,9 +13,9 @@ def connect_db():
             password = os.getenv("DB_PASSWORD")
             host = os.getenv("DB_HOST")
             port = os.getenv("DB_PORT")
+         
+            db_url = f'postgresql://{user}:{password}@{host}:{port}/{dbname}?sslmode=require'
         
-            db_url = f'postgresql://{user}:{password}@{host}:{port}/{dbname}'
-    
             engine = create_engine(db_url)
 
             print('Conexão com o Banco de Dados feita com sucesso!')

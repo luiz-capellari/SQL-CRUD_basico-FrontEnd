@@ -1,0 +1,9 @@
+﻿streamlit
+opencv-python-headless
+numpy
+pyzbar
+SQLAlchemy
+python-dotenv
+psycopg2-binary
+pandas
+openpyxl

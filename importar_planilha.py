@@ -6,7 +6,7 @@ engine = connect_db()
 
 if engine is not None:
     df = pd.read_excel('equipamentos.xlsx')
-
+    # metodo para evocar planilha com pandas para sql
     df.to_sql(
         name='equipamentos_estudios',
         con=engine,
